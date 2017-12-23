@@ -1,0 +1,12 @@
+#!/usr/bin/env sh
+
+#echo "Sleeping a random interval to stagger starts"
+#/usr/bin/sleep $[ ( $RANDOM % 10 )  + 60 ]s
+
+while true
+do
+  find {{ ansible_env.HARDEN_PATH }} -type l -print -exec bash -c 'ln -f "$(readlink -m -e "$0")" "$0"' {} \;
+  echo "Sleeping 60 Seconds"
+  echo "Press [CTRL+C] to stop.."
+	sleep 60
+done
